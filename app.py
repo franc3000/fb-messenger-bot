@@ -3,6 +3,7 @@ import sys
 import json
 import random
 import requests
+from datetime import datetime
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -17,7 +18,34 @@ def verify():
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
 
-    return "Hello world", 200
+    # from flask import Flask, render_template
+    # return render_template('index.html')
+    timestamp = datetime.today().strftime("%A, %B %d, %Y at %H:%M:%S")
+    html = """
+    <html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+        </nav>
+        <h3 class="text-muted"> </h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1 class="display-3">I'm a chatbot for Extraordinary Comebacks</h1>
+        <p class="lead">It's {TIME}</p>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Pareto.AI 2017</p>
+      </footer>
+
+    </div> <!-- /container -->
+    """.format(TIME=timestamp)
+    return html, 200
 
 
 @app.route('/', methods=['POST'])
