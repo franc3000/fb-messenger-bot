@@ -94,8 +94,8 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]
                     
                     # the recipient's ID, which should be your page's facebook ID
-                    recipient_id = messaging_event["recipient"]["id"]
-                    message_text = messaging_event["message"]["text"]
+                    # recipient_id = messaging_event["recipient"]["id"]
+                    # message_text = messaging_event["message"]["text"]
 
                     # send a random quote
                     index = random.randint(0,len(msg))
