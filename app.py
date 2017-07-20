@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-
+import random
 import requests
 from flask import Flask, request
 
@@ -39,7 +39,11 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    send_message(sender_id, "roger that!")
+                    if random.randint(0,100) < 25:
+                        send_message(sender_id, "roger that!")
+                    else:
+                        send_message(sender_id, "i'm a bot :'(")
+
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
